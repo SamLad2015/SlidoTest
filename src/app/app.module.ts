@@ -10,8 +10,10 @@ import {EventEffects} from './effects/EventEffects';
 import {HttpClientModule} from '@angular/common/http';
 import { EventsComponent } from './components/events/events.component';
 import { EventComponent } from './components/event/event.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateNativeUTCAdapter, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MomentDateFormatter} from './helpers/moment-date-formatter.helper';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,14 @@ import { EventDetailsComponent } from './components/event-details/event-details.
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, {metaReducers}),
     EffectsModule.forRoot([EventEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: MomentDateFormatter, useClass: NgbDateNativeUTCAdapter}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
