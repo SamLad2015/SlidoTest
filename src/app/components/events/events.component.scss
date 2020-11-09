@@ -2,9 +2,11 @@ ul li {
   list-style-type: none;
 }
 
-.buttons-container {
+.buttons-container , .indicators {
   padding:10px;
+}
 
+.buttons-container {
   button {
     span {
       margin-left: 10px;
@@ -16,4 +18,13 @@ ul li {
 
 .events {
   padding: 10px;
+}
+
+.indicators {
+  div {
+    display: inline-block;
+    span {
+      margin-right: 10px;
+    }
+  }
 }

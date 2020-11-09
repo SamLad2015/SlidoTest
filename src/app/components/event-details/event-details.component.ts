@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EventData} from '../../models/event-data';
-import { FormGroup, FormControl } from '@angular/forms';
-import * as moment from 'moment';
+import { FormGroup } from '@angular/forms';
+import {EventFormHelper} from '../../helpers/event-form.helper';
 
 @Component({
   selector: 'app-event-details',
@@ -16,20 +16,13 @@ export class EventDetailsComponent implements OnInit {
   event: EventData;
 
   eventForm: FormGroup;
-  constructor() { }
+  constructor(private eventFormHelper: EventFormHelper) { }
 
   ngOnInit(): void {
-    this.eventForm = new FormGroup({
-      title: new FormControl(this.event.title),
-      eventDate: new FormControl({
-        day: moment(this.event.eventDate).date(),
-        month: moment(this.event.eventDate).month(),
-        year: moment(this.event.eventDate).year()
-      }),
-      eventTimeHH: new FormControl(moment(this.event.eventDate).hour()),
-      eventTimeMM: new FormControl(moment(this.event.eventDate).minutes()),
-      location: new FormControl(this.event.location),
-    });
+    this.eventForm = this.eventFormHelper.getEventForm(this.event);
   }
 
+  saveForm(modal: any): void {
+    modal.close(this.eventFormHelper.getEvent(this.eventForm.value, this.event));
+  }
 }

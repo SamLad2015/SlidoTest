@@ -11,12 +11,12 @@
       <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
     </div>
     <div class="form-group">
-      <label for="eventDate">Event Date</label>
+      <label for="eventStartDate">Event Start Date</label>
       <div class="input-group">
-        <input type="text" class="form-control" id="eventDate" placeholder="Event Date" formControlName="eventDate"
-               name="eventDate" ngbDatepicker #eventDate="ngbDatepicker">
+        <input type="text" class="form-control" id="eventStartDate" placeholder="Event Date" formControlName="eventStartDate"
+               name="eventStartDate" ngbDatepicker #eventStartDate="ngbDatepicker">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="eventDate.toggle()" type="button">
+          <button class="btn btn-outline-secondary calendar" (click)="eventStartDate.toggle()" type="button">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
               <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
@@ -27,10 +27,33 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="eventTimeHH">Event Time <label for="eventTimeMM">(HH:MM 24 Hrs format)</label></label>
+      <label for="eventStartTimeHH">Event Start Time <label for="eventStartTimeMM">(HH:MM 24 Hrs format)</label></label>
       <div class="input-group time-wrapper">
-        <input type="number" class="form-control time" id="eventTimeHH" placeholder="HH" formControlName="eventTimeHH" max="23">
-        <input type="number" class="form-control time" id="eventTimeMM" placeholder="MM" formControlName="eventTimeMM" max="59">
+        <input type="number" class="form-control time" id="eventStartTimeHH" placeholder="HH" formControlName="eventStartTimeHH" max="23">
+        <input type="number" class="form-control time" id="eventStartTimeMM" placeholder="MM" formControlName="eventStartTimeMM" max="59">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="eventEndDate">Event End Date</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="eventEndDate" placeholder="Event Date" formControlName="eventEndDate"
+               name="eventEndDate" ngbDatepicker #eventEndDate="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="eventEndDate.toggle()" type="button">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+              <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+              <path fill-rule="evenodd" d="M8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="eventEndTimeHH">Event End Time <label for="eventEndTimeMM">(HH:MM 24 Hrs format)</label></label>
+      <div class="input-group time-wrapper">
+        <input type="number" class="form-control time" id="eventEndTimeHH" placeholder="HH" formControlName="eventEndTimeHH" max="23">
+        <input type="number" class="form-control time" id="eventEndTimeMM" placeholder="MM" formControlName="eventEndTimeMM" max="59">
       </div>
     </div>
     <div class="form-group">
@@ -40,6 +63,6 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Save</button>
+  <button type="button" class="btn btn-primary" (click)="saveForm(modal)">Save</button>
   <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
 </div>

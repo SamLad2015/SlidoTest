@@ -1,6 +1,7 @@
 export class EventData {
   id = -1;
   title = '';
-  eventDate: Date = new Date();
+  eventStartDate: Date = new Date();
+  eventEndDate: Date = new Date();
   location = '';
 }

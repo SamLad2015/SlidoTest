@@ -2,19 +2,22 @@
   {
     "id": 0,
     "title" : "test event 1",
-    "eventDate" : "2020-04-23T18:25:43.511Z",
+    "eventStartDate" : "2019-07-23T18:25:43.511Z",
+    "eventEndDate" : "2019-07-23T22:25:43.511Z",
     "location": "London"
   },
   {
     "id": 1,
     "title" : "test event 2",
-    "eventDate" : "2020-04-23T18:25:43.511Z",
+    "eventStartDate" : "2020-11-09T23:25:43.511Z",
+    "eventEndDate" : "2020-11-10T18:25:43.511Z",
     "location": "Bratislava"
   },
   {
     "id": 2,
     "title" : "test event 3",
-    "eventDate" : "2020-04-23T18:25:43.511Z",
+    "eventStartDate" : "2021-02-11T18:25:43.511Z",
+    "eventEndDate" : "2021-02-11T19:25:43.511Z",
     "location": "Prague"
   }
 ]

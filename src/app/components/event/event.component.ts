@@ -9,6 +9,8 @@ import {EventData} from '../../models/event-data';
 export class EventComponent implements OnInit {
   @Input()
   event: EventData;
+  @Input()
+  eventPeriod: string;
   constructor() { }
 
   ngOnInit(): void {

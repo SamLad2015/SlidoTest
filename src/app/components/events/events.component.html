@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12 buttons-container">
+    <div class="col-sm-3 buttons-container">
       <button class="btn btn-primary" (click)="open(content)">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
@@ -10,9 +10,24 @@
           <span>Add New Event</span>
         </button>
     </div>
+    <div class="col-sm-9 indicators">
+      <div>
+        <span class="rounded-circle bg-danger"></span><span>Past Events</span>
+      </div>
+      <div>
+        <span class="rounded-circle bg-primary"></span><span>Current Events</span>
+      </div>
+      <div>
+        <span class="rounded-circle bg-info"></span><span>Future Events</span>
+      </div>
+    </div>
   </div>
   <div class="row events">
-    <app-event *ngFor="let ev of events$ | async" [event]="ev" (click)="open(content, ev)"></app-event>
+    <app-event
+      *ngFor="let ev of events$ | async"
+      [event]="ev"
+      (click)="open(content, ev)"
+      [eventPeriod]="periodOfEvent(ev)"></app-event>
   </div>
 </div>
 <ng-template #content let-modal>

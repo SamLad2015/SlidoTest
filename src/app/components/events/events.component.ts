@@ -5,6 +5,7 @@ import {EventData} from '../../models/event-data';
 import {Observable} from 'rxjs';
 import {State} from '../../reducers';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {DateComparerHelper} from '../../helpers/date-comparer.helper';
 
 @Component({
   selector: 'app-events',
@@ -14,7 +15,9 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class EventsComponent implements OnInit {
   events$: Observable<EventData[]>;
   selectedEvent: EventData;
-  constructor(private store: Store<State>, private modalService: NgbModal) { }
+  constructor(private store: Store<State>,
+              private modalService: NgbModal,
+              private dateComparerHelper: DateComparerHelper) { }
 
   ngOnInit(): void {
     this.events$ = this.store.select(s => s.event.events);
@@ -29,5 +32,9 @@ export class EventsComponent implements OnInit {
     }).result.then((result) => {
       console.log(result);
     }).catch(() => {});
+  }
+
+  periodOfEvent = (event) => {
+    return this.dateComparerHelper.periodOfEvent(event);
   }
 }
