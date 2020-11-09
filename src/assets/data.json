@@ -2,6 +2,19 @@
   {
     "id": 0,
     "title" : "test event 1",
-    "eventDate" : "2020-04-23T18:25:43.511Z"
+    "eventDate" : "2020-04-23T18:25:43.511Z",
+    "location": "London"
+  },
+  {
+    "id": 1,
+    "title" : "test event 2",
+    "eventDate" : "2020-04-23T18:25:43.511Z",
+    "location": "Bratislava"
+  },
+  {
+    "id": 2,
+    "title" : "test event 3",
+    "eventDate" : "2020-04-23T18:25:43.511Z",
+    "location": "Prague"
   }
 ]

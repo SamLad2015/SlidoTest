@@ -1,3 +1,19 @@
 ul li {
   list-style-type: none;
 }
+
+.buttons-container {
+  padding:10px;
+
+  button {
+    span {
+      margin-left: 10px;
+      font-size: 0.8em;
+      padding-top: 2px;
+    }
+  }
+}
+
+.events {
+  padding: 10px;
+}

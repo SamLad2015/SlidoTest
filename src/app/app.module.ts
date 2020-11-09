@@ -11,12 +11,14 @@ import {HttpClientModule} from '@angular/common/http';
 import { EventsComponent } from './components/events/events.component';
 import { EventComponent } from './components/event/event.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
-    EventComponent
+    EventComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,

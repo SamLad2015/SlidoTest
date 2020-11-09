@@ -1,0 +1,16 @@
+.card {
+  margin: 0 10px 10px 0;
+  .event-date, .location {
+    margin-left: 10px;
+    color: #333333;
+  }
+
+  .event-date {
+    font-style: italic;
+    font-size: 0.8em;
+  }
+
+  .location {
+    font-weight: 600;
+  }
+}
