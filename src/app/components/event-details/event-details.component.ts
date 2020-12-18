@@ -21,6 +21,9 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventForm = this.eventFormHelper.getEventForm(this.event);
+    if (this.event.period === 'past') {
+      this.eventForm.disable();
+    }
   }
 
   saveForm(modal: any): void {
