@@ -1,11 +1,12 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import * as EventActions from '../../actions/event.actions';
-import { Store } from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import {EventData} from '../../models/event-data';
 import {Observable} from 'rxjs';
 import {State} from '../../reducers';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DateComparerHelper} from '../../helpers/date-comparer.helper';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-events',
@@ -15,9 +16,11 @@ import {DateComparerHelper} from '../../helpers/date-comparer.helper';
 export class EventsComponent implements OnInit {
   events$: Observable<EventData[]>;
   selectedEvent: EventData;
+
   constructor(private store: Store<State>,
               private modalService: NgbModal,
-              private dateComparerHelper: DateComparerHelper) { }
+              private dateComparerHelper: DateComparerHelper) {
+  }
 
   ngOnInit(): void {
     this.events$ = this.store.select(s => s.event.events);
@@ -37,10 +40,16 @@ export class EventsComponent implements OnInit {
       } else {
         this.store.dispatch(EventActions.updateEvent(event));
       }
-    }).catch(() => {});
+    }).catch(() => {
+    });
   }
 
-  periodOfEvent = (event) => {
-    return this.dateComparerHelper.periodOfEvent(event);
-  }
+  periodOfEvent = (event) => (this.dateComparerHelper.periodOfEvent(event));
+
+  formatEvents = (eventsStream: Observable<EventData[]>): Observable<EventData[]> => (
+    eventsStream.pipe(map((events: EventData[]) =>
+      events.map(e => ({...e, period: this.periodOfEvent(e)}))
+        .sort((a, b) => this.dateComparerHelper.compareDates(a, b))
+    ))
+  )
 }

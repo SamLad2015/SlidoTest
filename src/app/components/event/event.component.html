@@ -2,9 +2,9 @@
   <div class="card-body">
     <h5 class="card-title">
       <span class="rounded-circle" [ngClass]="{
-      'bg-danger' : eventPeriod === 'past',
-      'bg-primary' : eventPeriod === 'current',
-      'bg-info' : eventPeriod === 'future'
+      'bg-danger' : event.period === 'past',
+      'bg-primary' : event.period === 'current',
+      'bg-info' : event.period === 'future'
       }"></span>
       <span>{{event.title}}</span>
     </h5>

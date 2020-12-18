@@ -24,10 +24,9 @@
   </div>
   <div class="row events">
     <app-event
-      *ngFor="let ev of events$ | async"
+      *ngFor="let ev of formatEvents(events$) | async"
       [event]="ev"
-      (click)="open(content, ev)"
-      [eventPeriod]="periodOfEvent(ev)"></app-event>
+      (click)="open(content, ev)"></app-event>
   </div>
 </div>
 <ng-template #content let-modal>

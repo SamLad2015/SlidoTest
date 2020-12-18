@@ -18,4 +18,7 @@ export class DateComparerHelper {
         return 'future';
     }
   }
+  compareDates = (event1: EventData, event2: EventData) => {
+    return +moment(event1.eventStartDate) - +moment(event2.eventStartDate);
+  }
 }

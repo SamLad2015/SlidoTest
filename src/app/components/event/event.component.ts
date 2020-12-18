@@ -12,8 +12,6 @@ import {State} from '../../reducers';
 export class EventComponent {
   @Input()
   event: EventData;
-  @Input()
-  eventPeriod: string;
   constructor(private store: Store<State>) { }
 
   deleteEvent = (ev) => {
