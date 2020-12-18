@@ -1,6 +1,6 @@
 <div class="modal-header" [ngClass]="{
       'bg-light' : event.id < 0,
-      'bg-danger' : event.period === 'past',
+      'bg-secondary' : event.period === 'past',
       'bg-primary' : event.period  === 'current',
       'bg-info' : event.period  === 'future'
       }">
