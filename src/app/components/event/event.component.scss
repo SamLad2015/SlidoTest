@@ -22,8 +22,10 @@
     border: 0;
     background: transparent;
     font-size: 1.5em;
-    color: #666;
     outline: none;
+    svg {
+      fill: red;
+    }
     &:hover {
       color: #000;
       -webkit-animation: glow .5s ease-in-out infinite alternate;
