@@ -1,19 +1,23 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {EventData} from '../../models/event-data';
+import * as EventActions from '../../actions/event.actions';
+import {Store} from '@ngrx/store';
+import {State} from '../../reducers';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss']
 })
-export class EventComponent implements OnInit {
+export class EventComponent {
   @Input()
   event: EventData;
   @Input()
   eventPeriod: string;
-  constructor() { }
+  constructor(private store: Store<State>) { }
 
-  ngOnInit(): void {
+  deleteEvent = (ev) => {
+    this.store.dispatch(EventActions.deleteEvent(ev));
   }
 
 }

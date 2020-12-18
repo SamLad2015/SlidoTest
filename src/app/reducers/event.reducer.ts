@@ -9,7 +9,13 @@ const reducer = createReducer(
   initialState,
   on(EventActions.loadEvents, state => state),
   on(EventActions.addEvent, (state: EventState, event: EventData) => {
-    return { ...state, Events: [...state.events, event], Error: null };
+    return { ...state, events: [...state.events, event], Error: null };
+  }),
+  on(EventActions.updateEvent, (state: EventState, event: EventData) => {
+    return { ...state, events: [...state.events.filter(e => e.id !== event.id), event], Error: null };
+  }),
+  on(EventActions.deleteEvent, (state: EventState, event: EventData) => {
+    return { ...state, events: state.events.filter(e => e.id !== event.id), Error: null };
   }),
   on(EventActions.loadEventsSuccess, (state: EventState, { events }) => {
     return { ...state, events };

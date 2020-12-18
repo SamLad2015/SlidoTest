@@ -22,4 +22,13 @@ export const addEvent = createAction(
   props<EventData>()
 );
 
+export const updateEvent = createAction(
+  '[Event] Update Event',
+  props<EventData>()
+);
+
+export const deleteEvent = createAction(
+  '[Event] Delete Event',
+  props<EventData>()
+);
 

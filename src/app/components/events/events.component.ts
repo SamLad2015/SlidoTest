@@ -30,11 +30,13 @@ export class EventsComponent implements OnInit {
       ariaLabelledBy: 'modal-basic-title',
       centered: true
     }).result.then((event) => {
-      this.store.select(s => s.event.events)
-        .subscribe(es => event.id =  Math.max.apply(Math, es.map(e => e.id)) + 1);
-      this.store.dispatch(EventActions.addEvent(event));
-      this.store.select(s => s.event.events)
-        .subscribe(events => EventActions.loadEventsSuccess({events}));
+      if (event.id < 0) {
+        this.store.select(s => s.event.events)
+          .subscribe(es => event.id = Math.max.apply(Math, es.map(e => e.id)) + 1);
+        this.store.dispatch(EventActions.addEvent(event));
+      } else {
+        this.store.dispatch(EventActions.updateEvent(event));
+      }
     }).catch(() => {});
   }
 
