@@ -31,4 +31,8 @@
       animation: glow .5s ease-in-out infinite alternate;
     }
   }
+
+  &:hover {
+    box-shadow: 2px 2px #c0c0c0
+  }
 }
