@@ -15,15 +15,15 @@ export class EventFormHelper {
         month: moment(event.eventStartDate).month(),
         year: moment(event.eventStartDate).year()
       }),
-      eventStartTimeHH: new FormControl(moment(event.eventStartDate).hour()),
-      eventStartTimeMM: new FormControl(moment(event.eventStartDate).minutes()),
+      eventStartTimeHH: new FormControl(this.twoDigitNumber(moment(event.eventStartDate).hour())),
+      eventStartTimeMM: new FormControl(this.twoDigitNumber(moment(event.eventStartDate).minutes())),
       eventEndDate: new FormControl({
         day: moment(event.eventEndDate).date(),
         month: moment(event.eventEndDate).month(),
         year: moment(event.eventEndDate).year()
       }),
-      eventEndTimeHH: new FormControl(moment(event.eventEndDate).hour()),
-      eventEndTimeMM: new FormControl(moment(event.eventEndDate).minutes()),
+      eventEndTimeHH: new FormControl(this.twoDigitNumber(moment(event.eventEndDate).hour())),
+      eventEndTimeMM: new FormControl(this.twoDigitNumber(moment(event.eventEndDate).minutes())),
       location: new FormControl(event.location),
     });
   }
@@ -38,7 +38,34 @@ export class EventFormHelper {
     };
   }
 
+  isFormInvalid = (eventForm: FormGroup) => {
+    return (eventForm.invalid) ||
+      !(this.getDateTime(
+        eventForm.value.eventEndDate,
+        eventForm.value.eventEndTimeHH,
+        eventForm.value.eventEndTimeMM).isAfter(
+        this.getDateTime(
+          eventForm.value.eventStartDate,
+          eventForm.value.eventStartTimeHH,
+          eventForm.value.eventStartTimeMM)
+      )) || (
+        eventForm.value.title.trim() === '' ||
+        eventForm.value.location.trim() === ''
+      );
+  }
+
+  twoDigitNumber = (value) => {
+    if (parseInt(value, 10) < 10) {
+      return '0' + value;
+    }
+    return value;
+  }
+
+  private getDateTime = (eventDate, eventTimeHH, eventTimeMM) => {
+    return moment(`${eventDate.year}-${eventDate.month + 1}-${eventDate.day} ${eventTimeHH}:${eventTimeMM}:00`);
+  }
+
   private getEventDateTime = (eventDate: any, eventTimeHH: FormControl, eventTimeMM: FormControl) => {
-    return moment(`${eventDate.year}-${eventDate.month + 1}-${eventDate.day} ${eventTimeHH}:${eventTimeMM}:00`).toJSON();
+    return this.getDateTime(eventDate, eventTimeHH, eventTimeMM).toJSON();
   }
 }

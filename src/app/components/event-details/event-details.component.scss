@@ -5,3 +5,13 @@
     display: inline-block;
   }
 }
+
+.modal-header {
+  color: #fff;
+  button {
+    outline: none;
+  }
+  &.bg-light {
+    color: #000;
+  }
+}

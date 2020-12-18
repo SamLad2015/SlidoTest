@@ -1,4 +1,9 @@
-<div class="modal-header">
+<div class="modal-header" [ngClass]="{
+      'bg-light' : event.id < 0,
+      'bg-danger' : eventPeriod === 'past',
+      'bg-primary' : eventPeriod === 'current',
+      'bg-info' : eventPeriod === 'future'
+      }">
   <h4 class="modal-title" id="modal-basic-title">{{event.title || 'New Event'}}</h4>
   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
     <span aria-hidden="true">&times;</span>
@@ -8,7 +13,7 @@
   <form [formGroup]="eventForm">
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
+      <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title" [minLength]="5">
     </div>
     <div class="form-group">
       <label for="eventStartDate">Event Start Date</label>
@@ -29,8 +34,8 @@
     <div class="form-group">
       <label for="eventStartTimeHH">Event Start Time <label for="eventStartTimeMM">(HH:MM 24 Hrs format)</label></label>
       <div class="input-group time-wrapper">
-        <input type="number" class="form-control time" id="eventStartTimeHH" placeholder="HH" formControlName="eventStartTimeHH" max="23">
-        <input type="number" class="form-control time" id="eventStartTimeMM" placeholder="MM" formControlName="eventStartTimeMM" max="59">
+        <input type="number" class="form-control time" id="eventStartTimeHH" placeholder="HH" formControlName="eventStartTimeHH" [min]="0" [max]="23" (change)="twoDigitNumber('eventStartTimeHH')">
+        <input type="number" class="form-control time" id="eventStartTimeMM" placeholder="MM" formControlName="eventStartTimeMM" [min]="0" [max]="59" (change)="twoDigitNumber('eventStartTimeMM')">
       </div>
     </div>
     <div class="form-group">
@@ -52,17 +57,17 @@
     <div class="form-group">
       <label for="eventEndTimeHH">Event End Time <label for="eventEndTimeMM">(HH:MM 24 Hrs format)</label></label>
       <div class="input-group time-wrapper">
-        <input type="number" class="form-control time" id="eventEndTimeHH" placeholder="HH" formControlName="eventEndTimeHH" max="23">
-        <input type="number" class="form-control time" id="eventEndTimeMM" placeholder="MM" formControlName="eventEndTimeMM" max="59">
+        <input type="number" class="form-control time" id="eventEndTimeHH" placeholder="HH" formControlName="eventEndTimeHH" [min]="0" [max]="23" (change)="twoDigitNumber('eventEndTimeHH')">
+        <input type="number" class="form-control time" id="eventEndTimeMM" placeholder="MM" formControlName="eventEndTimeMM" [min]="0" [max]="59" (change)="twoDigitNumber('eventEndTimeMM')">
       </div>
     </div>
     <div class="form-group">
       <label for="location">Location</label>
-      <input type="text" class="form-control" id="location" placeholder="Location" formControlName="location">
+      <input type="text" class="form-control" id="location" placeholder="Location" formControlName="location" [minLength]="2">
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" (click)="saveForm(modal)">Save</button>
+  <button type="button" class="btn btn-primary" (click)="saveForm(modal)" [disabled]="isFormInvalid()">Save</button>
   <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
 </div>

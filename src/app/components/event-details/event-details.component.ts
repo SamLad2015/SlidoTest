@@ -15,6 +15,9 @@ export class EventDetailsComponent implements OnInit {
   @Input()
   event: EventData;
 
+  @Input()
+  eventPeriod: string;
+
   eventForm: FormGroup;
   constructor(private eventFormHelper: EventFormHelper) { }
 
@@ -24,5 +27,14 @@ export class EventDetailsComponent implements OnInit {
 
   saveForm(modal: any): void {
     modal.close(this.eventFormHelper.getEvent(this.eventForm.value, this.event));
+  }
+
+  isFormInvalid(): boolean {
+    return this.eventFormHelper.isFormInvalid(this.eventForm);
+  }
+
+  twoDigitNumber = (fieldName) => {
+    this.eventForm.value[fieldName] =
+      this.eventFormHelper.twoDigitNumber(this.eventForm.value[fieldName]);
   }
 }

@@ -31,6 +31,6 @@
   </div>
 </div>
 <ng-template #content let-modal>
-  <app-event-details *ngIf="modal" [modal]="modal" [event]="selectedEvent"></app-event-details>
+  <app-event-details *ngIf="modal" [modal]="modal" [event]="selectedEvent" [eventPeriod]="periodOfEvent(selectedEvent)"></app-event-details>
 </ng-template>
 

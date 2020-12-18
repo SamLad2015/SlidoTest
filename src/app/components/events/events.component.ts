@@ -29,8 +29,12 @@ export class EventsComponent implements OnInit {
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
       centered: true
-    }).result.then((result) => {
-      console.log(result);
+    }).result.then((event) => {
+      this.store.select(s => s.event.events)
+        .subscribe(es => event.id =  Math.max.apply(Math, es.map(e => e.id)) + 1);
+      this.store.dispatch(EventActions.addEvent(event));
+      this.store.select(s => s.event.events)
+        .subscribe(events => EventActions.loadEventsSuccess({events}));
     }).catch(() => {});
   }
 
