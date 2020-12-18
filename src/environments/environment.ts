@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  locationApi: 'http://open.mapquestapi.com/geocoding/v1/address?key=c5AA0GilMLFDlXrRbtSdv0kuVnjHPTEg&location=',
+  weatherApi: 'https://api.met.no/weatherapi/locationforecast/2.0/complete?'
 };
 
 /*
