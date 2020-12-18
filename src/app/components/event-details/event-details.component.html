@@ -1,8 +1,8 @@
 <div class="modal-header" [ngClass]="{
       'bg-light' : event.id < 0,
-      'bg-danger' : eventPeriod === 'past',
-      'bg-primary' : eventPeriod === 'current',
-      'bg-info' : eventPeriod === 'future'
+      'bg-danger' : event.period === 'past',
+      'bg-primary' : event.period  === 'current',
+      'bg-info' : event.period  === 'future'
       }">
   <h4 class="modal-title" id="modal-basic-title">{{event.title || 'New Event'}}</h4>
   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
@@ -15,50 +15,64 @@
       <label for="title">Title</label>
       <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title" [minLength]="5">
     </div>
-    <div class="form-group">
-      <label for="eventStartDate">Event Start Date</label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="eventStartDate" placeholder="Event Date" formControlName="eventStartDate"
-               name="eventStartDate" ngbDatepicker #eventStartDate="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="eventStartDate.toggle()" type="button">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-              <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-              <path fill-rule="evenodd" d="M8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
-            </svg>
-          </button>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="eventStartDate">Event Start Date</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="eventStartDate" placeholder="Event Date" formControlName="eventStartDate"
+                   name="eventStartDate" ngbDatepicker #eventStartDate="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="eventStartDate.toggle()" type="button">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                  <path fill-rule="evenodd" d="M8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="eventStartTimeHH">Event Start Time</label>
+          <div class="input-group time-wrapper">
+            <input type="number" class="form-control time" id="eventStartTimeHH" placeholder="HH" formControlName="eventStartTimeHH" [min]="0" [max]="23" (change)="twoDigitNumber('eventStartTimeHH')">
+            <input type="number" class="form-control time" id="eventStartTimeMM" placeholder="MM" formControlName="eventStartTimeMM" [min]="0" [max]="59" (change)="twoDigitNumber('eventStartTimeMM')">
+            <label class="info" for="eventStartTimeMM"> [24 Hrs]</label>
+          </div>
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="eventStartTimeHH">Event Start Time <label for="eventStartTimeMM">(HH:MM 24 Hrs format)</label></label>
-      <div class="input-group time-wrapper">
-        <input type="number" class="form-control time" id="eventStartTimeHH" placeholder="HH" formControlName="eventStartTimeHH" [min]="0" [max]="23" (change)="twoDigitNumber('eventStartTimeHH')">
-        <input type="number" class="form-control time" id="eventStartTimeMM" placeholder="MM" formControlName="eventStartTimeMM" [min]="0" [max]="59" (change)="twoDigitNumber('eventStartTimeMM')">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="eventEndDate">Event End Date</label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="eventEndDate" placeholder="Event Date" formControlName="eventEndDate"
-               name="eventEndDate" ngbDatepicker #eventEndDate="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="eventEndDate.toggle()" type="button">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-              <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-              <path fill-rule="evenodd" d="M8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
-            </svg>
-          </button>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="eventEndDate">Event End Date</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="eventEndDate" placeholder="Event Date" formControlName="eventEndDate"
+                   name="eventEndDate" ngbDatepicker #eventEndDate="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="eventEndDate.toggle()" type="button">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar2-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                  <path fill-rule="evenodd" d="M8 8a.5.5 0 0 1 .5.5V10H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V11H6a.5.5 0 0 1 0-1h1.5V8.5A.5.5 0 0 1 8 8z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="eventEndTimeHH">Event End Time <label for="eventEndTimeMM">(HH:MM 24 Hrs format)</label></label>
-      <div class="input-group time-wrapper">
-        <input type="number" class="form-control time" id="eventEndTimeHH" placeholder="HH" formControlName="eventEndTimeHH" [min]="0" [max]="23" (change)="twoDigitNumber('eventEndTimeHH')">
-        <input type="number" class="form-control time" id="eventEndTimeMM" placeholder="MM" formControlName="eventEndTimeMM" [min]="0" [max]="59" (change)="twoDigitNumber('eventEndTimeMM')">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="eventEndTimeHH">Event End Time</label>
+          <div class="input-group time-wrapper">
+            <input type="number" class="form-control time" id="eventEndTimeHH" placeholder="HH" formControlName="eventEndTimeHH" [min]="0" [max]="23" (change)="twoDigitNumber('eventEndTimeHH')">
+            <input type="number" class="form-control time" id="eventEndTimeMM" placeholder="MM" formControlName="eventEndTimeMM" [min]="0" [max]="59" (change)="twoDigitNumber('eventEndTimeMM')">
+            <label class="info" for="eventEndTimeMM"> [24 Hrs]</label>
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
@@ -66,8 +80,14 @@
       <input type="text" class="form-control" id="location" placeholder="Location" formControlName="location" [minLength]="2">
     </div>
   </form>
+  <div *ngIf="event.location">
+    <app-weather [location]="event.location"></app-weather>
+  </div>
+  <div class="error" *ngIf="error">
+    <span>{{error}}</span>
+  </div>
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-primary" (click)="saveForm(modal)" [disabled]="isFormInvalid()">Save</button>
+<div class="modal-footer" *ngIf="event.period !== 'past'">
+  <button type="button" class="btn btn-primary" (click)="saveForm(modal)" [disabled]="!isFormAltered()">Save</button>
   <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
 </div>

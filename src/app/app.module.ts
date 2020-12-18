@@ -14,13 +14,15 @@ import {NgbDateNativeUTCAdapter, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MomentDateFormatter} from './helpers/moment-date-formatter.helper';
+import { WeatherComponent } from './components/weather/weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
     EventComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,

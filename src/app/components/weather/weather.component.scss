@@ -1,0 +1,12 @@
+.weather-information {
+  border: 1px solid #c0c0c0;
+  border-radius: 10px;
+  padding: 10px;
+  span {
+    width: 50%;
+    display: inline-block;
+  }
+  i {
+    font-size: 0.8em;
+  }
+}

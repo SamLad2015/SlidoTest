@@ -11,13 +11,13 @@
         </button>
     </div>
     <div class="col-sm-9 indicators">
-      <div>
+      <div class="indicator">
         <span class="rounded-circle bg-danger"></span><span>Past Events</span>
       </div>
-      <div>
+      <div class="indicator">
         <span class="rounded-circle bg-primary"></span><span>Current Events</span>
       </div>
-      <div>
+      <div class="indicator">
         <span class="rounded-circle bg-info"></span><span>Future Events</span>
       </div>
     </div>
@@ -30,6 +30,6 @@
   </div>
 </div>
 <ng-template #content let-modal>
-  <app-event-details *ngIf="modal" [modal]="modal" [event]="selectedEvent" [eventPeriod]="periodOfEvent(selectedEvent)"></app-event-details>
+  <app-event-details *ngIf="modal" [modal]="modal" [event]="selectedEvent"></app-event-details>
 </ng-template>
 

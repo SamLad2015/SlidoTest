@@ -15,10 +15,8 @@ export class EventDetailsComponent implements OnInit {
   @Input()
   event: EventData;
 
-  @Input()
-  eventPeriod: string;
-
   eventForm: FormGroup;
+  error: string;
   constructor(private eventFormHelper: EventFormHelper) { }
 
   ngOnInit(): void {
@@ -26,11 +24,19 @@ export class EventDetailsComponent implements OnInit {
   }
 
   saveForm(modal: any): void {
-    modal.close(this.eventFormHelper.getEvent(this.eventForm.value, this.event));
+    if (!this.isFormInvalid()) {
+      modal.close(this.eventFormHelper.getEvent(this.eventForm.value, this.event));
+    }
   }
 
-  isFormInvalid(): boolean {
-    return this.eventFormHelper.isFormInvalid(this.eventForm);
+  isFormAltered = (): boolean => {
+    return this.eventForm.dirty;
+  }
+
+  isFormInvalid = (): any => {
+    const formTest = this.eventFormHelper.isFormInvalid(this.eventForm);
+    this.error = formTest.error;
+    return formTest.status;
   }
 
   twoDigitNumber = (fieldName) => {

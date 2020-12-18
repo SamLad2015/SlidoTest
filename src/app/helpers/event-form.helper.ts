@@ -38,20 +38,44 @@ export class EventFormHelper {
     };
   }
 
-  isFormInvalid = (eventForm: FormGroup) => {
-    return (eventForm.invalid) ||
-      !(this.getDateTime(
-        eventForm.value.eventEndDate,
-        eventForm.value.eventEndTimeHH,
-        eventForm.value.eventEndTimeMM).isAfter(
-        this.getDateTime(
-          eventForm.value.eventStartDate,
-          eventForm.value.eventStartTimeHH,
-          eventForm.value.eventStartTimeMM)
-      )) || (
-        eventForm.value.title.trim() === '' ||
-        eventForm.value.location.trim() === ''
-      );
+  isFormInvalid = (eventForm: FormGroup): any => {
+    if (eventForm.invalid) {
+      return {
+        status: true,
+        error: 'One or more field are empty or incorrect'
+      };
+    }
+
+    if (!(this.getDateTime(
+      eventForm.value.eventEndDate,
+      eventForm.value.eventEndTimeHH,
+      eventForm.value.eventEndTimeMM).isAfter(
+      this.getDateTime(
+        eventForm.value.eventStartDate,
+        eventForm.value.eventStartTimeHH,
+        eventForm.value.eventStartTimeMM)
+    ))) {
+      return {
+        status: true,
+        error: 'End date time should be later than the start date time or cannot be from the past'
+      };
+    }
+
+    if (eventForm.value.title.trim() === '') {
+      return {
+        status: true,
+        error: 'Title cannot be empty'
+      };
+    }
+
+    if (eventForm.value.location.trim() === '') {
+      return {
+        status: true,
+        error: 'Location cannot be empty'
+      };
+    }
+
+    return {status: false};
   }
 
   twoDigitNumber = (value) => {

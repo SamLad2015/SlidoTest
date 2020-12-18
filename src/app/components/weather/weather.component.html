@@ -1,0 +1,14 @@
+<div *ngIf="!isLoading" class="weather-information">
+  <h6>Event Weather Information</h6>
+  <span>Temperature: {{weatherData.temperature}} {{weatherUnits.temperature}}</span>
+  <span>Air Pressure: {{weatherData.airPressure}} {{weatherUnits.airPressure}}</span>
+  <span>Humidity: {{weatherData.humidity}} {{weatherUnits.humidity}}</span>
+  <span>Wind: {{weatherData.wind}} {{weatherUnits.wind}}</span>
+  <span>Wind Direction: {{weatherData.windDirection}} {{weatherUnits.windDirection}}</span>
+  <div>
+    <i>Last updated: {{weatherData.updatedAt | date: 'long'}}</i>
+  </div>
+</div>
+<div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>

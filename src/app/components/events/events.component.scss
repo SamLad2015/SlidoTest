@@ -21,7 +21,8 @@ ul li {
 }
 
 .indicators {
-  div {
+  div.indicator {
+    padding: 10px 0;
     display: inline-block;
     span {
       margin-right: 10px;
