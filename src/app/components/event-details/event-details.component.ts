@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EventData} from '../../models/event-data';
-import { FormGroup } from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {EventFormHelper} from '../../helpers/event-form.helper';
 
 @Component({
@@ -17,7 +17,9 @@ export class EventDetailsComponent implements OnInit {
 
   eventForm: FormGroup;
   error: string;
-  constructor(private eventFormHelper: EventFormHelper) { }
+
+  constructor(private eventFormHelper: EventFormHelper) {
+  }
 
   ngOnInit(): void {
     this.eventForm = this.eventFormHelper.getEventForm(this.event);

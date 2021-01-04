@@ -1,8 +1,5 @@
-import {
-  ActionReducerMap,
-  MetaReducer
-} from '@ngrx/store';
-import { environment } from '../../environments/environment';
+import {ActionReducerMap, MetaReducer} from '@ngrx/store';
+import {environment} from '../../environments/environment';
 import {EventState} from '../states/event-state';
 import {EventReducer} from './event.reducer';
 

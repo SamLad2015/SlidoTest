@@ -1,20 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from './reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {metaReducers, reducers} from './reducers';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 import {EventEffects} from './effects/EventEffects';
 import {HttpClientModule} from '@angular/common/http';
-import { EventsComponent } from './components/events/events.component';
-import { EventComponent } from './components/event/event.component';
+import {EventsComponent} from './components/events/events.component';
+import {EventComponent} from './components/event/event.component';
 import {NgbDateNativeUTCAdapter, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { EventDetailsComponent } from './components/event-details/event-details.component';
+import {EventDetailsComponent} from './components/event-details/event-details.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MomentDateFormatter} from './helpers/moment-date-formatter.helper';
-import { WeatherComponent } from './components/weather/weather.component';
+import {WeatherComponent} from './components/weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -36,4 +36,5 @@ import { WeatherComponent } from './components/weather/weather.component';
   providers: [{provide: MomentDateFormatter, useClass: NgbDateNativeUTCAdapter}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
