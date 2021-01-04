@@ -1,17 +1,18 @@
-import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { Observable, of} from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
-import { Action } from '@ngrx/store';
-import { Injectable } from '@angular/core';
+import {Actions, ofType, createEffect} from '@ngrx/effects';
+import {Observable, of} from 'rxjs';
+import {catchError, map, mergeMap} from 'rxjs/operators';
+import {Action} from '@ngrx/store';
+import {Injectable} from '@angular/core';
 import * as EventActions from '../actions/event.actions';
-import { EventData } from '../models/event-data';
-import { EventsService } from '../backend/services/events.service';
+import {EventData} from '../models/event-data';
+import {EventsService} from '../backend/services/events.service';
 import {EventsHelper} from '../helpers/events.helper';
 
 
 @Injectable()
 export class EventEffects {
-  constructor(private eventsService: EventsService, private action$: Actions, private eventsHelper: EventsHelper) {}
+  constructor(private eventsService: EventsService, private action$: Actions, private eventsHelper: EventsHelper) {
+  }
 
   GetEvents$: Observable<Action> = createEffect(() => {
     return this.action$.pipe(
